@@ -1,0 +1,6 @@
+StringIO
+BeautifulSoup
+pandas
+requests
+numpy
+matplotlib.pyplot

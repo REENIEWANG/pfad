@@ -84,23 +84,4 @@ ax.spines['right'].set_color('white')
 # 显示图表
 plt.show()
 
-# #优化
-# plt.figure(figsize=(10, 5)).patch.set_facecolor('white')
-# plt.plot(df['Date'], df['Value'], marker='o', linestyle=':', color='#FFC0CB',linewidth = '3',)
-#
-#
-# plt.title('Value Over Time')
-# plt.xlabel('Date')
-# plt.ylabel('Value')
-#
-# plt.title('ASSIGNMENT01', fontsize=20)
-# plt.xlabel('Date', fontsize=10)
-# plt.ylabel('Value', fontsize=10)
-# plt.grid(True, which='both', linestyle='--', linewidth=1)
-# plt.gca().xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter('%m-%d'))
-# plt.gca().xaxis.set_major_locator(plt.matplotlib.dates.DayLocator(interval=2))
-#
-#
-# # 显示图表
-# plt.show()
 
