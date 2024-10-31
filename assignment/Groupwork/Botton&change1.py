@@ -7,16 +7,16 @@ class DesktopPet:
         self.master = master
         self.master.title("Desktop Pet")
 
-        # 去掉窗口边框
+
         self.master.overrideredirect(True)
 
-        # 设置窗口背景为透明
+
         self.master.attributes("-transparentcolor", "gray")
 
-        # 设置窗口总在最上层
+
         self.master.attributes("-topmost", True)
 
-        # 加载图片
+
         try:
             self.gif1_image = Image.open("gif1.gif")
             self.gif2_image = Image.open("gif2.gif")
@@ -25,18 +25,18 @@ class DesktopPet:
             print(f"Error loading images: {e}")
             return
 
-        # 初始缩放因子
+
         self.scale_factor = 1.0
 
-        # 创建标签显示 GIF
+
         self.img_label = tk.Label(master, bg="gray")
         self.img_label.pack()
 
-        # 创建按钮，点击时切换 GIF
+
         self.button = tk.Button(master, command=self.switch_gif, borderwidth=0, bg="gray")
         self.button.place(x=10, y=10)
 
-        # 缩放按钮
+
         self.scale_up_button = tk.Button(master, text="+", command=self.scale_up, width=button_width,
                                          height=button_height)
         self.scale_up_button.place(x=10, y=80)
@@ -45,24 +45,24 @@ class DesktopPet:
                                            height=button_height)
         self.scale_down_button.place(x=10, y=120)
 
-        # 初始化索引
+        \
         self.gif1_index = 0
         self.gif2_index = 0
         self.is_gif1_playing = True
-        self.is_switching = False  # 新增标志位
+        self.is_switching = False
 
-        self.load_images()  # 加载图像
-        self.animate_gif1()  # 开始播放 gif1
+        self.load_images()
+        self.animate_gif1()
 
-        # 允许拖动
+
         self.img_label.bind("<Button-1>", self.start_drag)
         self.img_label.bind("<B1-Motion>", self.do_drag)
 
-        # 处理关闭事件
+
         self.master.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def load_images(self):
-        # 加载 GIF 框架
+
         self.gif1_frames = [ImageTk.PhotoImage(frame.copy().convert("RGBA").resize(
             (int(frame.width * self.scale_factor), int(frame.height * self.scale_factor)))) for frame in
                             ImageSequence.Iterator(self.gif1_image)]
@@ -72,11 +72,11 @@ class DesktopPet:
         self.update_button_image()
 
     def update_button_image(self):
-        # 更新按钮图像
+
         resized_button_image = self.button_image.convert("RGBA").resize(
             (int(self.button_image.width * self.scale_factor), int(self.button_image.height * self.scale_factor)))
         self.button_img = ImageTk.PhotoImage(resized_button_image)
-        self.button.config(image=self.button_img)  # 更新按钮图像
+        self.button.config(image=self.button_img)
 
     def animate_gif1(self):
         if self.is_gif1_playing:
@@ -90,7 +90,7 @@ class DesktopPet:
         self.master.after(100, self.animate_gif2)
 
     def switch_gif(self):
-        if not self.is_switching:  # 防止重复切换
+        if not self.is_switching:
             self.is_switching = True
             self.is_gif1_playing = False
             self.gif2_index = 0
@@ -98,10 +98,10 @@ class DesktopPet:
             self.master.after(30000, self.switch_back)
 
     def switch_back(self):
-        self.is_switching = False  # 切换完成，允许再次切换
+        self.is_switching = False
         self.is_gif1_playing = True
-        self.gif1_index = 0  # 重置 gif1 的索引
-        self.animate_gif1()  # 确保立即播放 gif1
+        self.gif1_index = 0
+        self.animate_gif1()
 
     def start_drag(self, event):
         self.last_x = event.x
@@ -121,19 +121,19 @@ class DesktopPet:
         self.update_images()
 
     def update_images(self):
-        self.load_images()  # 重新加载图像以更新尺寸
+        self.load_images()
         if self.is_gif1_playing:
-            self.img_label.config(image=self.gif1_frames[self.gif1_index])  # 更新当前显示的图像
+            self.img_label.config(image=self.gif1_frames[self.gif1_index])
         else:
             self.img_label.config(image=self.gif2_frames[self.gif2_index])
 
     def on_closing(self):
-        self.master.destroy()  # 销毁窗口，结束程序
+        self.master.destroy()
 
 
-# 创建主窗口
+
 root = tk.Tk()
-pet = DesktopPet(root, button_width=5, button_height=2)  # 在这里自定义按钮大小
+pet = DesktopPet(root, button_width=3, button_height=1)
 root.mainloop()
 
 
