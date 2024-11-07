@@ -63,4 +63,3 @@ class DesktopPet:
 root = tk.Tk()
 pet = DesktopPet(root)
 root.mainloop()
-
