@@ -1,6 +1,9 @@
 import tkinter as tk
 from PIL import Image, ImageTk, ImageSequence
 import math
+from pathlib import Path
+
+this_folder = Path(__file__).resolve().parent
 
 
 class DesktopPet:
@@ -13,14 +16,14 @@ class DesktopPet:
         self.master.attributes("-topmost", True)
 
         try:
-            self.normal_image = Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/normal.gif")
+            self.normal_image = Image.open(this_folder / "normal.gif")
             self.icon_images = [
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uialarm.png"),
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uichat.png"),
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uiexist.png"),
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uiskin.png"),
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uitouch.png"),
-                Image.open("D:/Term1/SD5913/Assignment/pfad/assignment/Groupwork/version2/uizoom.png")
+                Image.open(this_folder / "uialarm.png"),
+                Image.open(this_folder / "uichat.png"),
+                Image.open(this_folder / "uiexist.png"),
+                Image.open(this_folder / "uiskin.png"),
+                Image.open(this_folder / "uitouch.png"),
+                Image.open(this_folder / "uizoom.png")
             ]
         except Exception as e:
             print(f"Error loading images: {e}")
