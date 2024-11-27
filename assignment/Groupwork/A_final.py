@@ -13,31 +13,31 @@ class DesktopPet:
 
         try:
             # 加载初始皮肤 GIF 和备用皮肤 GIF
-            self.normal_image = Image.open("normal.gif")
-            self.default_image = Image.open("normal.gif")  # 默认皮肤
-            self.alternate_image = Image.open("skin/normal2.gif")
+            self.normal_image = Image.open("Image Resources/normal.gif")
+            self.default_image = Image.open("Image Resources/normal.gif")  # 默认皮肤
+            self.alternate_image = Image.open("Image Resources/normal2.gif")
             self.icon_images = [
-                Image.open("uialarm.png"),
-                Image.open("uitouch.png"),
-                Image.open("uichat.png"),
-                Image.open("uizoom.png"),
-                Image.open("uiskin.png"),
-                Image.open("uiexist.png")
+                Image.open("Image Resources/uialarm.png"),
+                Image.open("Image Resources/uitouch.png"),
+                Image.open("Image Resources/uichat.png"),
+                Image.open("Image Resources/uizoom.png"),
+                Image.open("Image Resources/uiskin.png"),
+                Image.open("Image Resources/uiexist.png")
             ]
             # 加载手形光标图像
-            self.hand_cursor_image = Image.open("hand.png")
+            self.hand_cursor_image = Image.open("Image Resources/hand.png")
             self.hand_cursor = ImageTk.PhotoImage(self.hand_cursor_image.resize((30, 30)))
 
             # 加载表情框图片
             self.emotion_images = {
-                "happy": ImageTk.PhotoImage(Image.open("uikuang_happy.png")),
-                "sad": ImageTk.PhotoImage(Image.open("uikuang_sad.png")),
-                "angry": ImageTk.PhotoImage(Image.open("uikuang_angry.png")),
-                "bored": ImageTk.PhotoImage(Image.open("uikuang_bored.png"))
+                "happy": ImageTk.PhotoImage(Image.open("Image Resources/uikuang_happy.png")),
+                "sad": ImageTk.PhotoImage(Image.open("Image Resources/uikuang_sad.png")),
+                "angry": ImageTk.PhotoImage(Image.open("Image Resources/uikuang_angry.png")),
+                "bored": ImageTk.PhotoImage(Image.open("Image Resources/uikuang_bored.png"))
             }
 
             # 加载闹钟图像（假设为一张图片）
-            self.alarm_image = Image.open("alarmgif.gif")  # 这里假设是一个GIF文件
+            self.alarm_image = Image.open("Image Resources/alarmgif.gif")  # 这里假设是一个GIF文件
         except Exception as e:
             print(f"加载图像时发生错误: {e}")
             return
@@ -205,7 +205,7 @@ class DesktopPet:
     def exit_animation(self):
         """显示退出动画并延迟退出程序"""
         # 切换皮肤到退出动画
-        self.normal_image = Image.open("exit.gif")
+        self.normal_image = Image.open("Image Resources/exit.gif")
         self.load_images()  # 重新加载退出图像
         self.normal_index = 0
         self.img_label.config(image=self.normal_frames[self.normal_index])  # 设置为退出动画图像
@@ -223,14 +223,14 @@ class DesktopPet:
     def show_alarm(self):
         """显示闹钟动画和倒计时"""
         # 切换皮肤到闹钟皮肤
-        self.normal_image = Image.open("alarmgif.gif")
+        self.normal_image = Image.open("Image Resources/alarmgif.gif")
         self.load_images()  # 重新加载图像
         self.normal_index = 0
         self.img_label.config(image=self.normal_frames[self.normal_index])  # 设置为闹钟图像
 
         # 显示倒计时标签
         self.countdown_label.place(x=100, y=50)  # 设置位置
-        self.start_countdown(60)  # 设置倒计时为5分钟
+        self.start_countdown(300)  # 设置倒计时为5分钟
 
     def start_countdown(self, remaining_seconds):
         """启动倒计时"""
@@ -293,7 +293,7 @@ class DesktopPet:
 
         if emotion == "happy":
             # 加载并显示 happy.gif 作为新的皮肤
-            self.normal_image = Image.open("happy.gif")
+            self.normal_image = Image.open("Image Resources/happy.gif")
             self.load_images()  # 重新加载图像
             self.normal_index = 0
             self.img_label.config(image=self.normal_frames[self.normal_index])
@@ -304,7 +304,7 @@ class DesktopPet:
 
         elif emotion == "sad":
             # 加载并显示 sad.gif 作为新的皮肤
-            self.normal_image = Image.open("sad.gif")
+            self.normal_image = Image.open("Image Resources/sad.gif")
             self.load_images()  # 重新加载图像
             self.normal_index = 0
             self.img_label.config(image=self.normal_frames[self.normal_index])
@@ -315,7 +315,7 @@ class DesktopPet:
 
         elif emotion == "angry":
             # 加载并显示 angry.gif 作为新的皮肤
-            self.normal_image = Image.open("angry.gif")
+            self.normal_image = Image.open("Image Resources/angry.gif")
             self.load_images()  # 重新加载图像
             self.normal_index = 0
             self.img_label.config(image=self.normal_frames[self.normal_index])
@@ -326,7 +326,7 @@ class DesktopPet:
 
         elif emotion == "bored":
             # 加载并显示 bored.gif 作为新的皮肤
-            self.normal_image = Image.open("bored.gif")
+            self.normal_image = Image.open("Image Resources/bored.gif")
             self.load_images()  # 重新加载图像
             self.normal_index = 0
             self.img_label.config(image=self.normal_frames[self.normal_index])
