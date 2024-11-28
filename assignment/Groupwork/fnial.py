@@ -230,7 +230,7 @@ class DesktopPet:
 
         # 显示倒计时标签
         self.countdown_label.place(x=100, y=50)  # 设置位置
-        self.start_countdown(5)  # 设置倒计时为5分钟
+        self.start_countdown(300)  # 设置倒计时为5分钟
 
     def start_countdown(self, remaining_seconds):
         """启动倒计时"""
