@@ -4,3 +4,7 @@ click final.py
 run the code
 display the table pet
 and interact with it with the mouse!!!
+
+library:
+tkinter
+PIL
