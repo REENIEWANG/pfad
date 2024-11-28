@@ -10,7 +10,7 @@ class DesktopPet:
         self.master.overrideredirect(True)
         self.master.attributes("-transparentcolor", "gray")
         self.master.attributes("-topmost", True)
-
+        self.buttons = []  # 用来保存所有按钮的 Canvas 对象
         try:
             # 加载初始皮肤 GIF 和备用皮肤 GIF
             self.normal_image = Image.open("Image Resources/normal.gif")
@@ -230,7 +230,7 @@ class DesktopPet:
 
         # 显示倒计时标签
         self.countdown_label.place(x=100, y=50)  # 设置位置
-        self.start_countdown(300)  # 设置倒计时为5分钟
+        self.start_countdown(5)  # 设置倒计时为5分钟
 
     def start_countdown(self, remaining_seconds):
         """启动倒计时"""
@@ -284,8 +284,28 @@ class DesktopPet:
         canvas.create_rectangle(radius, 0, width - radius, height, fill="white", outline="white")
         canvas.create_rectangle(0, radius, width, height - radius, fill="white", outline="white")
         canvas.create_text(width / 2, height / 2, text=text.capitalize(), font=("Arial", 10), fill="black")
+
+        # 为按钮绑定点击事件
         canvas.tag_bind("button", "<Button-1>", lambda event, e=text: self.show_emotion(e))
+
+        # 将按钮的 Canvas 对象加入列表
+        self.buttons.append(canvas)
+
+        canvas.tag_bind("button", "<Leave>", lambda event: self.remove_buttons_after_delay())
+
         canvas.create_rectangle(0, 0, width, height, outline="", fill="", tags="button")
+
+    def remove_buttons_after_delay(self):
+        """延迟 4 秒钟后移除所有按钮"""
+        # 使用 after 方法延迟删除所有按钮
+        self.master.after(4000, self.remove_all_buttons)
+
+    def remove_all_buttons(self):
+        """移除所有按钮"""
+        for canvas in self.buttons:
+            canvas.destroy()  # 销毁所有按钮
+        self.buttons.clear()  # 清空按钮列表
+
 
     def show_emotion(self, emotion):
         """显示选中情绪的图像"""
